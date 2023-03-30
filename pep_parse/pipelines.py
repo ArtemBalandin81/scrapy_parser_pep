@@ -1,10 +1,6 @@
 from collections import defaultdict
 from datetime import datetime
-from pathlib import Path
 
-from itemadapter import ItemAdapter
-
-#from scrapy.exceptions import DropItem
 from .constants import BASE_DIR, RESULTS_DIR
 
 DATE_FORMAT = '%Y-%m-%d_%H-%M-%S'
