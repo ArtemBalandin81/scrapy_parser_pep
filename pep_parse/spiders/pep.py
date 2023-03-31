@@ -3,8 +3,8 @@ from urllib.parse import urljoin
 
 import scrapy
 
-from ..constants import ALLOWED_DOMAINS, PEPS_URL, START_URLS
 from ..items import PepParseItem
+from ..settings import ALLOWED_DOMAINS, START_URLS
 
 
 class PepSpider(scrapy.Spider):
@@ -20,7 +20,7 @@ class PepSpider(scrapy.Spider):
         for pep_link in all_peps:
             yield response.follow(
                 urljoin(
-                    PEPS_URL,
+                    START_URLS,
                     pep_link
                 ),
                 callback=self.parse_pep
@@ -31,7 +31,7 @@ class PepSpider(scrapy.Spider):
         page_title = response.css('#pep-content h1::text').get()
         pattern_name = r'\– (.*)'
         data = {
-            'number': int(page_title.split()[1]),
+            'number': page_title.split()[1],
             'name': re.search(pattern_name, page_title)[1],
             'status': response.css(
                 '#pep-content h1 + dl dd.field-even abbr::text'

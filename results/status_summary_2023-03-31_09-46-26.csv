@@ -1,13 +1,13 @@
 Status,Quantities
-Active,24
 Final,210
+Rejected,106
 Withdrawn,48
-Superseded,15
+Active,24
+Deferred,31
 Informational,29
 Accepted,26
-Rejected,106
-Deferred,31
 Standards Track,99
+Superseded,15
 Draft,15
 Process,4
 April Fool!,1
