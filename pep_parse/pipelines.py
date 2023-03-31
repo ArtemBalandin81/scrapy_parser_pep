@@ -1,3 +1,4 @@
+import csv
 from collections import defaultdict
 from datetime import datetime
 
@@ -27,7 +28,10 @@ class PepParsePipeline:
             mode='w',
             encoding='utf-8'
         ) as f:
-            f.write('Status,Quantities\n')
-            [f.write(f'{status},{quantity}\n')
-             for status, quantity in self.total_status.items()]
-            f.write(f'Total,{sum(self.total_status.values())}\n')
+            csv.writer(f, dialect=csv.unix_dialect).writerows(
+                [
+                    ('Status', 'Quantities'),
+                    *self.total_status.items(),
+                    ('Total', sum(self.total_status.values()))
+                ]
+            )
